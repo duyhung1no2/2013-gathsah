@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="listview_background">#DDDDDD</color>
+    <color name="main_color">#00AAEE</color>
+    <color name="note_background">#FFFFFF</color>
+    <color name="note_border">#EEEEEE</color>
+    <color name="note_select_background">#75d6fd</color>
+    <color name="note_content">#111111</color>
+    <color name="note_date">#555555</color>
+    
+    <color name="hashtag_background">#222222</color>
+    
+</resources>

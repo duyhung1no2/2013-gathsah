@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_char">#</string>
+    <string name="app_name">Hashtag Note</string>
+    <string name="action_note_add">Add</string>
+    <string name="action_note_edit">Edit</string>
+    <string name="action_note_delete">Delete</string>
+    <string name="action_note_save">Save</string>
+    <string name="action_note_cancel">Cancel</string>
+    <string name="action_note_search">Search</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="note_title">Title</string>
+    <string name="note_content">Content</string>
+    <string name="note_here">Note here</string>
+    <string name="title_activity_note_add">New note</string>
+    <string name="title_activity_note_detail">Details</string>
+    <string name="last_updated">Last Updated:</string>
+    <string name="confirm_delete">Are you sure you want delete this note?</string>
+    <string name="confirm_discard">Are you sure you want discard this note?</string>
+
+    <string-array name="guide_notes">
+        <item></item>
+    </string-array>
+
+    <string name="title_activity_hashtag_list_fragment">HashtagListFragment</string>
+    <string name="title_activity_note_list_fragment">NoteListFragment</string>
+
+</resources>
