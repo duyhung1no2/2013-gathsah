@@ -1,7 +1,6 @@
 package com.duyhung.hashtagnote;
 
 import android.annotation.SuppressLint;
-import java.util.*;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
