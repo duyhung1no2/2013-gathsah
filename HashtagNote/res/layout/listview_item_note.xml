@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/listview_note_selector"
+    android:orientation="horizontal"
+    android:padding="@dimen/activity_horizontal_margin" >
+
+    <!--
+         <TextView
+        android:id="@+id/tvListItemTitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/note_title"
+        android:textColor="@color/main_color"
+        android:textSize="@dimen/text_size_title"
+        android:textStyle="bold" />
+    -->
+
+    <TextView
+        android:id="@+id/tvListItemContent"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="8.25"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="@string/hello_world"
+        android:textColor="@color/note_content"
+        android:textSize="@dimen/text_size_title" />
+
+    <TextView
+        android:id="@+id/tvListItemCreateDate"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_weight="1.75" 
+        android:padding="@dimen/activity_horizontal_margin"
+        android:textColor="@color/note_date"
+        android:textSize="@dimen/text_size_date" />
+
+</LinearLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/textViewHeaderHashtag"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textColor="@color/main_color"
+    android:textSize="@dimen/text_size_content"
+    android:text="@string/action_note_add"
+    android:paddingTop="@dimen/activity_horizontal_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_horizontal_margin"
+    android:background="@drawable/listview_header_hashtag_style"
+    />
