@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
-
 import com.duyhung.hashtagnote.HashtagListFragment.HashtagItemClickListener;
 import com.duyhung.hashtagnote.NoteListFragment.NoteContextItemSelectedListener;
 import com.duyhung.hashtagnote.adapter.ListPagerAdapter;
