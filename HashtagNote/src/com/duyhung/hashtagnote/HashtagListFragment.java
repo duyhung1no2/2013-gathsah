@@ -25,7 +25,6 @@ public class HashtagListFragment extends Fragment {
 	private List<List<Hashtag>> listHashtag;
 	
 	private HashtagItemClickListener handler;
-	
 	private int currentPositionNote = 0;
 
 	@Override
