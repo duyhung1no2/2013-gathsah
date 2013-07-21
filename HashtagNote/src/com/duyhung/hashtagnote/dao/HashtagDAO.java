@@ -23,90 +23,89 @@ public class HashtagDAO extends DatabaseDAO<Hashtag> {
 	@Override
 	public Cursor getAllCursor() {
 		openDB();
-		return db.rawQuery("SELECT H.[_id], Tag FROM Hashtag H" 
-						+ " INNER JOIN TagDetail D ON H.[_id] == D.TagId" 
-						+ " GROUP BY H.[_id], Tag" 
-						+ " ORDER BY COUNT(*) DESC", new String[]{});
+		return db.rawQuery("SELECT H.[_id], Tag FROM Hashtag H" + " INNER JOIN TagDetail D ON H.[_id] == D.TagId" + " GROUP BY H.[_id], Tag" + " ORDER BY COUNT(*) DESC", new String[] {});
 	}
 
 	@Override
 	public List<Hashtag> getAll() {
 		List<Hashtag> tags = new ArrayList<Hashtag>();
 		openDB();
-		Cursor cs = db.rawQuery("SELECT * FROM " + DB.TABLE_HASHTAG + " ORDER BY " + DB.HASHTAG_TAG + " COLLATE NOCASE", new String[]{});
-		for(cs.moveToFirst(); !cs.isAfterLast(); cs.moveToNext()){
+		Cursor cs = db.rawQuery("SELECT * FROM " + DB.TABLE_HASHTAG + " ORDER BY " + DB.HASHTAG_TAG + " COLLATE NOCASE", new String[] {});
+		for (cs.moveToFirst(); !cs.isAfterLast(); cs.moveToNext()) {
 			tags.add(converter.convertCursorToModel(cs));
 		}
-		
+
 		closeDB();
 		return tags;
 	}
-	
+
 	@SuppressLint("DefaultLocale")
-	public List<List<Hashtag>> getMultiList(){
+	public List<List<Hashtag>> getMultiList() {
 		List<List<Hashtag>> multiList = new ArrayList<List<Hashtag>>();
 		List<Hashtag> hashtags = getAll();
-		
+
 		String currentAnpha = "[0-9]";
 		List<Hashtag> sameStartWith = new ArrayList<Hashtag>();
-		
-		for(Hashtag tag : hashtags){			
+
+		for (Hashtag tag : hashtags) {
 			String firstChar = tag.getTag().substring(1, 2).toLowerCase();
-			
-			if(firstChar.matches(currentAnpha)){
+
+			if (firstChar.matches(currentAnpha)) {
 				sameStartWith.add(tag);
-			} else{
+			} else {
 				currentAnpha = firstChar;
-				if (sameStartWith.size() > 0) 
+				if (sameStartWith.size() > 0)
 					multiList.add(sameStartWith);
 				sameStartWith = null;
 				sameStartWith = new ArrayList<Hashtag>();
 				sameStartWith.add(tag);
 			}
-			
+
 			if (hashtags.indexOf(tag) + 1 == hashtags.size()) {
 				multiList.add(sameStartWith);
 			}
 
 		}
 		return multiList;
-		
+
 	}
 
 	@Override
 	public Hashtag get(long id) {
 		openDB();
-		
-		Cursor cs = db.query(true, DB.TABLE_HASHTAG, new String[]{}, DB.HASHTAG_ID + " = " + id, null, null, null, null, null);
+
+		Cursor cs = db.query(true, DB.TABLE_HASHTAG, new String[] {}, DB.HASHTAG_ID + " = " + id, null, null, null, null, null);
 		cs.moveToFirst();
 		Hashtag tag = converter.convertCursorToModel(cs);
-		
+
 		closeDB();
 		return tag;
-	} 
-	
-	public int getNumberOfNote(Hashtag tag){
+	}
+
+	public int getNumberOfNote(Hashtag tag) {
 		int total = 0;
-		for(TagDetail d : new TagDetailDAO(mContext).getAll()){
-			if(d.getTagId() == tag.getId())
+		for (TagDetail d : new TagDetailDAO(mContext).getAll()) {
+			if (d.getTagId() == tag.getId()) {
 				total++;
+			}
 		}
 		return total;
 	}
-	
-	public long getIdByTag(String tagName){
-		for(Hashtag tag : getAll()){
-			if(tag.getTag().equals(tagName))
+
+	public long getIdByTag(String tagName) {
+		for (Hashtag tag : getAll()) {
+			if (tag.getTag().equals(tagName)) {
 				return tag.getId();
+			}
 		}
 		return 0;
 	}
-	
+
 	public long getNextTagId() {
 		long id = 0;
 		openDB();
-		Cursor cs = db.rawQuery("SELECT * FROM " + DB.TABLE_HASHTAG + " ORDER BY " + DB.HASHTAG_ID + " DESC LIMIT 1", new String[]{});
-		if(cs.moveToFirst()){
+		Cursor cs = db.rawQuery("SELECT * FROM " + DB.TABLE_HASHTAG + " ORDER BY " + DB.HASHTAG_ID + " DESC LIMIT 1", new String[] {});
+		if (cs.moveToFirst()) {
 			id = converter.convertCursorToModel(cs).getId();
 		}
 		closeDB();
