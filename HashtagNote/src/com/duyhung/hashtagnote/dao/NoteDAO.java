@@ -125,7 +125,7 @@ public class NoteDAO extends DatabaseDAO<Note> {
 		obj.setId(getNextNoteId());
 		openDB();
 		db.insert(DB.TABLE_NOTE, null, converter.convertModelToContentValues(obj));
-		saveTag(getTag(obj.getContent()));
+		saveTag(obj, getTag(obj.getContent()));
 		closeDB();
 	}
 
@@ -141,24 +141,22 @@ public class NoteDAO extends DatabaseDAO<Note> {
 	@Override
 	public void update(Note obj) {
 		deleteTagDetail(obj);
-		saveTag(getTag(obj.getContent()));
+		saveTag(obj, getTag(obj.getContent()));
 		deleteNotUseTag();
 		openDB();
 		db.update(DB.TABLE_NOTE, converter.convertModelToContentValues(obj), DB.NOTE_ID + "=" + obj.getId(), null);
 		closeDB();
 	}
 	
-	private void saveTag(List<String> tags) {
-		long noteId = getNextNoteId() - 1;
-		
+	private void saveTag(Note note, List<String> tags) {
 		for(String tag : tags){
 			long hashtagId = hashtagDAO.getIdByTag(tag);
 			if(hashtagId != 0){
-				tagDetailDAO.insert(new TagDetail(0, noteId, hashtagId));
+				tagDetailDAO.insert(new TagDetail(0, note.getId(), hashtagId));
 			} else {
 				long nextHashtagId = hashtagDAO.getNextTagId();
 				hashtagDAO.insert(new Hashtag(nextHashtagId, tag));
-				tagDetailDAO.insert(new TagDetail(0, noteId, nextHashtagId));
+				tagDetailDAO.insert(new TagDetail(0, note.getId(), nextHashtagId));
 			}
 		}
 	}
